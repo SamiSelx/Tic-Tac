@@ -11,36 +11,34 @@ function App() {
   // });
 
   const [value, setValue] = useState(null);
-  const [status,setStatus] = useState("Next Player : X")
+  const [status, setStatus] = useState("Next Player : X");
   const [squares, setSquares] = useState(new Array(9).fill(null));
 
   function handleClicked(i) {
     if (squares[i] || calculateWinner(squares)) return;
 
-    
     let val = value == "X" ? "O" : "X";
-    
+
     let newSquares = [...squares];
     newSquares[i] = val;
     setSquares(newSquares);
     setValue(val);
-    let statusVal = val == 'X' ? 'O': 'X'
-    if(calculateWinner(newSquares)){
-      setStatus("winner is :" + calculateWinner(newSquares))
-      
-    }else setStatus("Next Player : "+ statusVal);
+    let statusVal = val == "X" ? "O" : "X";
+    if (calculateWinner(newSquares)) {
+      setStatus("winner is :" + calculateWinner(newSquares));
+    } else setStatus("Next Player : " + statusVal);
   }
 
-  function handleResetClick(){
-    setSquares(new Array().fill(null))
-    setStatus("Next Player : X")
-    setValue(null)
+  function handleResetClick() {
+    setSquares(new Array().fill(null));
+    setStatus("Next Player : X");
+    setValue(null);
   }
 
   return (
-    <div style={{ height: "100vh", display: "flex", justifyContent: "center" }}>
-      <div>
-        <h4>{status}</h4>
+    <div style={{ height: "100vh", display: "flex", justifyContent: "center",  flexDirection:'column',marginLeft:"50px" }}>
+      <h4>{status}</h4>
+      <div style={{display:"flex", alignItems:"center"}}>
         <div
           style={{
             display: "grid",
@@ -105,13 +103,13 @@ function App() {
             }}
           />
         </div>
+        <ol className="history" style={{alignSelf:'flex-start'}}>
+          <li>
+            <button onClick={handleResetClick}>GO to game Start</button>
+          </li>
+          {/* {player.buttons} */}
+        </ol>
       </div>
-      <ol className="history">
-        <li>
-          <button onClick={handleResetClick}>GO to game Start</button>
-        </li>
-        {/* {player.buttons} */}
-      </ol>
     </div>
   );
 }
@@ -132,16 +130,13 @@ function calculateWinner(squares) {
 
   for (let i = 0; i < wins.length; i++) {
     let [a, b, c] = wins[i];
-    if(squares[a] && squares[a]==squares[b] && squares[a]==squares[c]) {
-      return squares[a]
+    if (squares[a] && squares[a] == squares[b] && squares[a] == squares[c]) {
+      return squares[a];
     }
-
   }
 
   return null;
 }
-
-
 
 // if (e.target.innerHTML == "") {
 // e.target.innerHTML = player.nextPlayer;
