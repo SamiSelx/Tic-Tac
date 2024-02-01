@@ -1,5 +1,6 @@
 import "./App.css";
 import Square from "./Square";
+import Button from "./Button";
 import { useState } from "react";
 
 function App() {
@@ -13,6 +14,8 @@ function App() {
   const [value, setValue] = useState(null);
   const [status, setStatus] = useState("Next Player : X");
   const [squares, setSquares] = useState(new Array(9).fill(null));
+  const [history,setHistory] = useState({number: 0, hist: new Array(9).fill(null)})
+  const [buttons,setButtons] = useState(new Array(9).fill(null))
 
   function handleClicked(i) {
     if (squares[i] || calculateWinner(squares)) return;
@@ -21,18 +24,44 @@ function App() {
 
     let newSquares = [...squares];
     newSquares[i] = val;
+    let histo = new Array(9).fill(null)
+    histo = [...history.hist]
+    histo[history.number] = [...newSquares]
+    histo.push(val)
+    setHistory({number: history.number+1,hist: histo})
+    console.log(histo)
+    //Create Buttons 
+
+    let btn = [...buttons] 
+    btn[history.number]= history.number>=1 && <li key={history.number}><Button value={history.number} clickedBtn= {()=>{btnClicked(history.number -1)}} /></li>
+    setButtons(btn)
+    console.log(buttons)
+    console.log(history)
+
+    /**Create Buttons  **/
     setSquares(newSquares);
     setValue(val);
     let statusVal = val == "X" ? "O" : "X";
     if (calculateWinner(newSquares)) {
-      setStatus("winner is :" + calculateWinner(newSquares));
+      setStatus("WINNER IS :" + calculateWinner(newSquares));
     } else setStatus("Next Player : " + statusVal);
   }
 
   function handleResetClick() {
-    setSquares(new Array().fill(null));
+    setSquares(new Array(9).fill(null));
     setStatus("Next Player : X");
     setValue(null);
+    setHistory({number: 0,hist: new Array(9).fill(null)})
+    setButtons(new Array(9).fill(null))
+  }
+
+  function btnClicked(id){
+    setSquares(history.hist[id])
+    setValue(history.hist[id+9])
+    console.log(history)
+    let statusVal = history.hist[id+9] == "X" ? "O" : "X";
+    setStatus("Next Player : " + statusVal)
+
   }
 
   return (
@@ -107,6 +136,10 @@ function App() {
           <li>
             <button onClick={handleResetClick}>GO to game Start</button>
           </li>
+          {/* <li>
+            <button onClick={()=>{btnClicked(0)}}>Go First Move</button>
+          </li> */}
+          {buttons}
           {/* {player.buttons} */}
         </ol>
       </div>
@@ -153,3 +186,4 @@ function calculateWinner(squares) {
 //   ],
 // });
 // }
+
