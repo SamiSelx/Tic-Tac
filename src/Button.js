@@ -1,5 +1,5 @@
 
 
 export default function button({value, clickedBtn}){
-    return <button onClick={clickedBtn}>Move To #{value}</button>
+    return <button onClick={clickedBtn} className="historyBtn">Move To #{value}</button>
 }

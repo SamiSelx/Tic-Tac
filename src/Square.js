@@ -10,5 +10,5 @@ export default function Square({content,clicked}){
         border: "2px solid black",
         fontSize: "1.5em",
       };
-    return(<div onClick={clicked} style={styleDiv}>{content}</div>)
+    return(<div  onClick={clicked} style={{...styleDiv,color: content == 'X'? 'red': 'blue'}}>{content}</div>)
 }

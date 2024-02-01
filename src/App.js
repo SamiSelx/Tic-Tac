@@ -1,6 +1,7 @@
 import "./App.css";
 import Square from "./Square";
 import Button from "./Button";
+import successSound from './success.mp3'
 import { useState } from "react";
 
 function App() {
@@ -44,6 +45,8 @@ function App() {
     let statusVal = val == "X" ? "O" : "X";
     if (calculateWinner(newSquares)) {
       setStatus("WINNER IS :" + calculateWinner(newSquares));
+      new Audio(successSound).play()
+      
     } else setStatus("Next Player : " + statusVal);
   }
 
@@ -65,9 +68,12 @@ function App() {
   }
 
   return (
-    <div style={{ height: "100vh", display: "flex", justifyContent: "center",  flexDirection:'column',marginLeft:"50px" }}>
-      <h4>{status}</h4>
-      <div style={{display:"flex", alignItems:"center"}}>
+    <div style={{ height: "100vh", display: "flex", justifyContent: "center",  flexDirection:'column', alignItems:"center" }}>
+      
+      <div style={{display:"flex",justifyContent:"center", alignItems:"center", padding: "50px 100px",
+    boxShadow: "1px 1px 5px rgba(0, 0, 0, 50%)"}}>
+      <div>
+      <h4 style={{color: "#252E3B"}}>{status}</h4>
         <div
           style={{
             display: "grid",
@@ -75,8 +81,10 @@ function App() {
             gridTemplateRows: "repeat(3,1fr)",
             width: "150px",
             height: "150px",
+            boxShadow: "1px 1px 13px rgba(0,0,0,25%)"
           }}
         >
+          
           <Square
             content={squares[0]}
             clicked={() => {
@@ -132,9 +140,10 @@ function App() {
             }}
           />
         </div>
-        <ol className="history" style={{alignSelf:'flex-start'}}>
+        </div>
+        <ol className="history">
           <li>
-            <button onClick={handleResetClick}>GO to game Start</button>
+            <button className="historyBtn" onClick={handleResetClick}>GO to game Start</button>
           </li>
           {/* <li>
             <button onClick={()=>{btnClicked(0)}}>Go First Move</button>
