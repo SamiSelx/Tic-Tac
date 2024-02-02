@@ -30,14 +30,12 @@ function App() {
     histo[history.number] = [...newSquares]
     histo.push(val)
     setHistory({number: history.number+1,hist: histo})
-    console.log(histo)
+
     //Create Buttons 
 
     let btn = [...buttons] 
     btn[history.number]= history.number>=1 && <li key={history.number}><Button value={history.number} clickedBtn= {()=>{btnClicked(history.number -1)}} /></li>
     setButtons(btn)
-    console.log(buttons)
-    console.log(history)
 
     /**Create Buttons  **/
     setSquares(newSquares);
@@ -61,7 +59,6 @@ function App() {
   function btnClicked(id){
     setSquares(history.hist[id])
     setValue(history.hist[id+9])
-    console.log(history)
     let statusVal = history.hist[id+9] == "X" ? "O" : "X";
     setStatus("Next Player : " + statusVal)
 
@@ -196,3 +193,5 @@ function calculateWinner(squares) {
 // });
 // }
 
+
+console.log('%c WELCOME TO TIC TAC TOE GAME! ', 'background: #222; color: #bada55;font-size:40px;text-align:center;');
