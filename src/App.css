@@ -1,3 +1,58 @@
+/* @font-face {
+  font-family: debug;
+  src: url(../public/scrawling-pad-font/ScrawlingPad-AzPp.ttf);
+}
+*{
+  font-family: debug;
+  font-size: 1.05em;
+} */
 #root{
   height: 100vh;
+  background: #E0EAFC;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #CFDEF3, #E0EAFC);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #CFDEF3, #E0EAFC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.history{
+  font-weight: bold;
+  padding: 0;
+}
+
+.historyBtn{
+  background-color: #B9CFF2;
+  border: navajowhite;
+  padding: 6px 13px;
+  margin-bottom: 5px;
+  font-size: 1.01em;
+  cursor: pointer;
+  color: #252E3B;
+  font-weight: bold;
+  transition: 0.4s all;
+  border-radius: 8px;
+  /* #97ADCF */
+}
+
+.historyBtn:hover{
+  background-color: #97ADCF;
+}
+
+.box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 100px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 50%);
+  gap: 40px;
+}
+
+
+
+@media (max-width:618px) {
+  .box{
+    width: 80%;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0;
+  }
 }
