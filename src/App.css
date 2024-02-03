@@ -16,6 +16,7 @@
 
 .history{
   font-weight: bold;
+  padding: 0;
 }
 
 .historyBtn{
@@ -34,4 +35,24 @@
 
 .historyBtn:hover{
   background-color: #97ADCF;
+}
+
+.box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 100px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 50%);
+  gap: 40px;
+}
+
+
+
+@media (max-width:618px) {
+  .box{
+    width: 80%;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0;
+  }
 }

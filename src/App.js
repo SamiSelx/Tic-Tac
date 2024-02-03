@@ -107,13 +107,14 @@ function App() {
       }}
     >
       <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          padding: "50px 100px",
-          boxShadow: "1px 1px 5px rgba(0, 0, 0, 50%)",
-        }}
+        // style={{
+        //   display: "flex",
+        //   justifyContent: "center",
+        //   alignItems: "center",
+        //   padding: "50px 100px",
+        //   boxShadow: "1px 1px 5px rgba(0, 0, 0, 50%)",
+        // }}
+        className="box"
       >
         <div>
           <h4 style={{ color: "#252E3B" }}>{status}</h4>
